@@ -17,20 +17,20 @@ describe("Pengujian Fungsi Matematika", function () {
 });
 
 describe("Memeriksa kasus negative untuk fungsi Kurang dan Bagi ", function() {
-  it("seharusnya mengembalikan error saat membagi dengan 0", function () {
+  it("seharusnya mengembalikan error saat membagi 6 / 0", function () {
     expect(() => bagi(6, 0)).to.throw("Tidak Bisa Membagi dengan nol");
   });
-  it("seharusnya mengembalikan error saat menginput nilai negatif pada pengurangan", function () {
-    expect(() => kurang(-1, -7)).to.throw("Tidak Bisa Menginput Nilai Negatif");
+  it("seharusnya mengembalikan error saat saat mengurangkan  -1 - 5", function () {
+    expect(() => kurang(-1, 5)).to.throw("Tidak Bisa Menginput Nilai Negatif");
   });
 });
 
 describe("Memeriksa kasus negative untuk fungsi kali dan tambah", function() {
-  it("seharusnya mengembalikan error saat menginput String pada perkalian", function () {
+  it("seharusnya mengembalikan error saat mengkalikan 'halo' * 3", function () {
     expect(() => kali("halo", 3)).to.throw("Tidak Bisa Menginput String");
   });
 
-  it("seharusnya mengembalikan error saat menginput Null pada pertambahan", function () {
+  it("seharusnya mengembalikan error saat menambahkan 15 + null", function () {
     expect(() => tambah(15, null)).to.throw("Tidak Bisa menginput null");
   });
 });
