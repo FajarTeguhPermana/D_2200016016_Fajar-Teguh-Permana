@@ -1,30 +1,23 @@
-from locust import HttpUser, task, between
+from locust import HttpUser, TaskSet, task, between
 
-class ProdukTest(HttpUser):
-    wait_time = between(1, 2)
+class ApiTest(TaskSet):
+    
+    @task
+    def get_items(self):
+        self.client.get("/api/items")
 
     @task
-    def lihat_semua_produk(self):
-        self.client.get("/produk")
+    def post_item(self):
+        self.client.post("/api/items", json={"name": "New Item", "description": "This is a new item"})
 
     @task
-    def tambah_produk(self):
-        self.client.post("/produk", json={
-            "nama": "Produk C",
-            "harga": 15000
-        })
+    def put_item(self):
+        self.client.put("/api/items/1", json={"name": "Updated Item", "description": "This item has been updated"})
 
     @task
-    def lihat_produk_by_id(self):
-        self.client.get("/produk/1")
+    def delete_item(self):
+        self.client.delete("/api/items/1")
 
-    @task
-    def update_produk(self):
-        self.client.put("/produk/1", json={
-            "nama": "Produk A Updated",
-            "harga": 12000
-        })
-
-    @task
-    def hapus_produk(self):
-        self.client.delete("/produk/1")
+class WebsiteUser(HttpUser):
+    tasks = [ApiTest]
+    wait_time = between(1, 5)
