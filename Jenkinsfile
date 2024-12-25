@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/username/node-ci-cd.git'
+                git branch: 'prak8', url: 'https://github.com/FajarTeguhPermana/D_2200016016_Fajar-Teguh-Permana.git'
             }
         }
         stage('Install Dependencies') {
