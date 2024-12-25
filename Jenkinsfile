@@ -32,13 +32,18 @@ pipeline {
             }
         }
     }
-    post {
-        success {
-            echo 'Pipeline finished successfully!'
-        }
-        failure {
-            echo 'Pipeline failed!'
-        }
+   post {
+    success {
+        emailext subject: 'Build Succeeded',
+                 body: 'Pipeline completed successfully.',
+                 to: 'fajarprogramming@gmail.com'
     }
+    failure {
+        emailext subject: 'Build Failed',
+                 body: 'Pipeline failed. Please check the console log in Jenkins.',
+                 to: 'fajarprogramming@gmail.com'
+    }
+}
+
 }
 
